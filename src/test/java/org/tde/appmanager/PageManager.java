@@ -1,9 +1,11 @@
 package org.tde.appmanager;
 
+import org.tde.appmanager.reports.ScreenOneReport;
+
 public class PageManager {
     private LoginPage loginPage;
-    private HomePage homePage;
-
+    private MainMenu mainMenu;
+    private ScreenOneReport screenOneReport;
 
     public LoginPage getLoginPage() {
         if (loginPage == null)
@@ -11,9 +13,15 @@ public class PageManager {
         return loginPage;
     }
 
-    public HomePage getHomePage() {
-        if (homePage == null)
-            homePage = new HomePage();
-        return homePage;
+    public MainMenu getMainMenu() {
+        if (mainMenu == null)
+            mainMenu = new MainMenu();
+        return mainMenu;
+    }
+
+    public ScreenOneReport getScreenOneReport() {
+        if (screenOneReport == null)
+            screenOneReport = new ScreenOneReport();
+        return screenOneReport;
     }
 }

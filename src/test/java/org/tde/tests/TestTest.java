@@ -1,6 +1,7 @@
 package org.tde.tests;
 
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -24,7 +25,7 @@ public class TestTest extends TestBase {
     }
 
     @Test
-    public void test() {
+    public void loopScreenOneButtonClick() {
         open(url);
         app.getLoginPage()
                 .setCompany(companyName)
@@ -32,10 +33,17 @@ public class TestTest extends TestBase {
                 .setUserName(username)
                 .setPassword(password)
                 .clickSignIn();
-        app.getHomePage()
-                .openAnalytics();
-    }
+        app.getMainMenu()
+                .openAnalytics()
+                .openScreenOneReport();
+        Selenide.sleep(15000);
+        SelenideElement frame = $("div#contentPlaceHolder > iframe");
+        driver.switchTo()
+                .frame(frame);
+        app.getScreenOneReport()
+                .clickButton();
 
+    }
 
     @AfterTest
     public void tearDown() {
