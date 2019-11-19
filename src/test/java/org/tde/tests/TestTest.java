@@ -1,40 +1,34 @@
 package org.tde.tests;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import org.tde.config.Config;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.close;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class TestTest extends TestBase {
-    String url = "https://ru-portal.tde.at/rusgazburenie/React#/rigoverview";
-    String companyName = "tde";
-    String username = "tde\\lushenko_d";
-    String password = "Ghjcnjqgfhjkm123";
-
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/work/aqa/tde_test/src/test/resources/chromedriver");
-        }
+        System.setProperty("webdriver.chrome.driver", Config.getProperty(Config.DRIVER_PATH));
+    }
 
     @Test
     public void loopScreenOneButtonClick() {
-        open(url);
+        open(Config.getProperty(Config.TDE_URL));
+        getWebDriver().manage().window().fullscreen();
         app.getLoginPage()
-                .setCompany(companyName)
+                .setCompany(Config.getProperty(Config.TDE_COMPANY))
                 .clickNext()
-                .setUserName(username)
-                .setPassword(password)
+                .setUserName(Config.getProperty(Config.TDE_LOGIN))
+                .setPassword(Config.getProperty(Config.TDE_PASSWORD))
                 .clickSignIn();
         app.getMainMenu()
                 .openAnalytics()
                 .openScreenOneReport();
-        Selenide.sleep(15000);
-        SelenideElement frame = $("div#contentPlaceHolder > iframe");
-        switchTo()
-                .frame(frame);
+        app.getScreenOneReport().switchFrame();
         app.getScreenOneReport()
                 .clickButton();
     }

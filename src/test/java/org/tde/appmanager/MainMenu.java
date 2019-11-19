@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainMenu {
-
     public MainMenu openAnalytics() {
         $("a[href='/rusgazburenie/PronovaAnalyticsReport']")
                 .shouldBe(visible)
@@ -27,6 +26,7 @@ public class MainMenu {
         $("li[data-reportid='47c570f7-d8ad-4963-bebf-dddad0286761']")
                 .shouldBe(visible)
                 .click();
+        Selenide.sleep(15000);
         return this;
     }
 }
