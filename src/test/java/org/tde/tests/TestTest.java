@@ -2,8 +2,6 @@ package org.tde.tests;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,8 +9,6 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestTest extends TestBase {
-
-    ChromeDriver driver;
     String url = "https://ru-portal.tde.at/rusgazburenie/React#/rigoverview";
     String companyName = "tde";
     String username = "tde\\lushenko_d";
@@ -20,13 +16,11 @@ public class TestTest extends TestBase {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/home/karpenko/work/ui-tests/tde_test1/src/test/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/home/user/work/aqa/tde_test/src/test/resources/chromedriver");
         }
 
     @Test
     public void loopScreenOneButtonClick() {
-//        open(url);
-//        driver = new ChromeDriver();
         open(url);
         app.getLoginPage()
                 .setCompany(companyName)
@@ -43,7 +37,6 @@ public class TestTest extends TestBase {
                 .frame(frame);
         app.getScreenOneReport()
                 .clickButton();
-
     }
 
     @AfterTest
