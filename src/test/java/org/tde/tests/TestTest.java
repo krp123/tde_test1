@@ -20,9 +20,8 @@ public class TestTest extends TestBase {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/home/user/work/aqa/tde_test/src/test/resources/chromedriver");
-        driver = new ChromeDriver();
-    }
+        System.setProperty("webdriver.chrome.driver", "/home/karpenko/work/ui-tests/tde_test1/src/test/resources/chromedriver");
+        }
 
     @Test
     public void loopScreenOneButtonClick() {
